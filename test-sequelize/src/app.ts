@@ -4,16 +4,20 @@ const cors = require('cors');
 const app = express();
 const morgan = require("morgan");
 const router = express.Router();
-const user = require("./controller/user.controller");
 const port: number = 3000;
 
 import apiRouter from './routers';
 import { Request, Response } from "express";
 import { sequelize } from './config/Connection';
+import * as dotenv from "dotenv";
+import path from 'path';
+dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.set('jwt-secret', process.env.secretkey);
 
 app.use(morgan('dev'));
 

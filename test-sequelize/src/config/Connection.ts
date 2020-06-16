@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize";
+import config from './database.config';
 
 export const sequelize = new Sequelize(
-    "testServer",
-    "root",
-    "메롱",
+    config.database.name,
+    config.database.user,
+    config.database.password,
     {
-        host: "127.0.0.1",
+        host: config.database.host,
         dialect: "mysql",
         define: {
             timestamps: false

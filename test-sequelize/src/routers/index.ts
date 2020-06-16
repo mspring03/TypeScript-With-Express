@@ -1,5 +1,5 @@
 const express = require("express");
-import userRouter from './user.Router';
+import userRouter from '../routers/user.router';
 
 const router = express.Router();
 
