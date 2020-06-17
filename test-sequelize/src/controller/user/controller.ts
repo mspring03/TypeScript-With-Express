@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import jwt from 'jsonwebtoken';
 
 const User = require("./query");
+const mktoken = require("./mkToken").mktoken;
 
 const signUpUser = async (req: Request, res: Response) => {
     const { userId, password, name } = req.body;
@@ -13,36 +13,15 @@ const signUpUser = async (req: Request, res: Response) => {
     res.status(200).json({ message: "회원가입 성공"}).end();
 }
 
-const signInUser = async (req: Request, res: Response) => {
+const signInUser = async (req: Request, res: Response): Promise<any> => {
     const { userId, password } = req.body;
-    const secret = req.app.get('jwt-secret');
-    const user: any = await User.findUserById(userId);
+    const user = await User.findUserById(userId);
     
-    try {
-        if (!user) { throw new Error("로그인 실패"); } 
+    if (!user) throw new Error("로그인 실패"); 
         
-        else if(user.password === password) {
-            const token = await ((resolve, reject) => {
-                jwt.sign({
-                    id: user.id,
-                    nick: user.nick,
-                },
-                secret,
-                {
-                expiresIn: '12h',
-                }, (err, token) => {
-                    if (err) reject(err);
-                    resolve(token);
-                });
-            });
-            console.log(token);
-            res.status(200).json({
-                message: 'login success',
-                token,
-            }).end();
-        }
-    } catch (error) {
-        res.status(403).json({ message: error.message }).end();
+    if(user.password === password) {
+        const token = await mktoken(req, res, user);
+        res.status(200).json({ message: '로그인 성공', token, }).end();
     }
 }
 
