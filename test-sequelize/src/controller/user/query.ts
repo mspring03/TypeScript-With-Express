@@ -1,5 +1,3 @@
-import { INTEGER } from "sequelize";
-
 const User = require("../../models/user").User;
 
 const findOne = async (userId: string): Promise<Object> => {
@@ -7,7 +5,7 @@ const findOne = async (userId: string): Promise<Object> => {
         attributes: [ "userID", "password", "name" ],
         where: { userId: userId }
     });
-    
+
     if(user != null) 
     return user.dataValues;
     return user;
@@ -36,4 +34,4 @@ export const userCreate = async (userId: string, password: string, name: string)
     } catch (error) {
         throw error
     }
-} 
+}
