@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { tokenUpdate } from './query';
 
 const User = require("./query");
 const mktoken = require("./mkToken").mktoken;
@@ -21,6 +22,7 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
         
     if(user.password === password) {
         const token = await mktoken(req, res, user);
+        await User.tokenUpdate(user.userId, token);
         res.status(200).json({ message: '로그인 성공', token, }).end();
     }
 }
