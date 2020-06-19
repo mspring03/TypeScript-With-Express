@@ -29,12 +29,12 @@ room.init(
     }
 );
 
-// room.hasMany(room_user, { foreignKey: 'r_id', sourceKey: 'room_r_id' }); 
-// room_user.belongsTo(room, { foreignKey: 'r_id', targetKey: 'room_r_id' }); 
+room.hasMany(room_user, { foreignKey: 'room_r_id', sourceKey: 'r_id' }); 
+room_user.belongsTo(room, { foreignKey: 'room_r_id', targetKey: 'r_id' }); 
 
-// room.hasMany(user_room, { foreignKey: 'r_id', sourceKey: 'room_r_id' }); 
-// user_room.belongsTo(room, { foreignKey: 'r_id', targetKey: 'room_r_id' });
+room.hasMany(user_room, { foreignKey: 'room_r_id', sourceKey: 'r_id' }); 
+user_room.belongsTo(room, { foreignKey: 'room_r_id', targetKey: 'r_id' });
 
-// room.hasMany(message, { foreignKey: 'r_id', sourceKey: 'room_r_id' }); 
-// message.belongsTo(room, { foreignKey: 'r_id', targetKey: 'room_r_id' }); 
+room.hasMany(message, { foreignKey: 'room_r_id', sourceKey: 'r_id' }); 
+message.belongsTo(room, { foreignKey: 'room_r_id', targetKey: 'r_id' }); 
 
