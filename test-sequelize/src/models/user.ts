@@ -3,6 +3,7 @@ import Sequelize, { Model } from "sequelize";
 import { room_user } from './room_user';
 import { user_room } from './user_room';
 import { message } from './message';
+import { room } from './room';
 
 
 export class User extends Model<User> {
@@ -63,14 +64,11 @@ User.init(
     }
 );
 
-// User.hasMany(user_room, { foreignKey: 'u_id', sourceKey: 'user_u_id' }); 
-// user_room.belongsTo(User, { foreignKey: 'u_id', targetKey: 'user_u_id' }); 
+User.hasMany(user_room, { foreignKey: 'user_u_id', sourceKey: 'u_id' }); 
+user_room.belongsTo(User, { foreignKey: 'user_u_id', targetKey: 'u_id' }); 
 
-// User.hasMany(room_user, { foreignKey: 'u_id', sourceKey: 'user_u_id' }); 
-// room_user.belongsTo(User, { foreignKey: 'u_id', targetKey: 'user_u_id' }); 
+User.hasMany(room, { foreignKey: 'room_u_id', sourceKey: 'u_id' });
+room.belongsTo(User, { foreignKey: 'room_u_id', targetKey: 'u_id' });
 
-// User.hasOne(user_connection, { foreignKey: 'u_id', sourceKey: 'user_u_id' }); 
-// user_connection.belongsTo(User, { foreignKey: 'u_id', targetKey: 'user_u_id' }); 
-
-// User.hasMany(message, { foreignKey: 'u_id', sourceKey: 'user_u_id' }); 
-// message.belongsTo(User, { foreignKey: 'u_id', targetKey: 'user_u_id' }); 
+User.hasMany(message, { foreignKey: 'user_u_id', sourceKey: 'u_id' }); 
+message.belongsTo(User, { foreignKey: 'user_u_id', targetKey: 'u_id' }); 
