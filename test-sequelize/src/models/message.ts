@@ -12,10 +12,6 @@ export class message extends Model<message> {
 
 message.init(
     {
-        room_r_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
         message: {
             type: Sequelize.STRING
         },
@@ -24,10 +20,6 @@ message.init(
         },
         timestamp: {
             type: Sequelize.TIME,
-            allowNull: false
-        },
-        user_u_id: {
-            type: Sequelize.INTEGER,
             allowNull: false
         },
         name: {
