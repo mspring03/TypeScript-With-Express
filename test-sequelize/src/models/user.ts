@@ -1,8 +1,7 @@
-import { sequelize } from "../config/Connection";
+import { sequelize } from '../config/Connection';
 import Sequelize, { Model } from "sequelize";
 import { room_user } from './room_user';
 import { user_room } from './user_room';
-import { user_connection } from './user_connection';
 import { message } from './message';
 
 
@@ -12,7 +11,10 @@ export class User extends Model<User> {
     password: string;
     name: string;
     profile_img: string;
-    introduce:string;
+    introduce: string;
+    connection: boolean;
+    last_online: string;
+    token: string;
 }
 
 User.init(
@@ -42,6 +44,17 @@ User.init(
         introduce: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        connection: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false
+        },
+        last_online: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        token: {
+            type: Sequelize.STRING
         }
     },
     {
