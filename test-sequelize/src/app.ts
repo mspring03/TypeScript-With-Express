@@ -11,6 +11,7 @@ import { Request, Response } from "express";
 import { sequelize } from './config/Connection';
 import * as dotenv from "dotenv";
 import path from 'path';
+
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 app.use(cors());
