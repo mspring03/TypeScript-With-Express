@@ -2,14 +2,14 @@ import * as http from "http";
 import socketIO from "socket.io";
 import { timeStamp } from "console";
 
-const User = require('./user.query');
-const Room = require('./room.query');
-const Message = require('./message.query');
+const User = require('./controller/chat/user.query');
+const Room = require('./controller/chat/room.query');
+const Message = require('./controller/chat/message.query');
 const server: http.Server = http.createServer();
 const io: any = socketIO(server);
 
 let userInfo: object = new Object;
-
+console.log("TS연림TS연림TS연림TS연림");
 io.on('connection', (socket) => {
     socket.on('first', token => {
         const user = User.oneUserFindByToken(token); 
@@ -83,4 +83,4 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         delete userInfo[socket.id];
     });
-})
+});
