@@ -1,13 +1,8 @@
 {
   "name": "test-sequelize",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.ts",
-  "scripts": {
-    "start": "nodemon --watch src --delay 1 --exec ts-node src/app.ts",
-    "lint": "tslint -p.",
-    "build": "webpack --config webpack.config.js"
-  },
+  "description": "app.ts",
+  "main": "webpack.config.js",
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -34,6 +29,12 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "sequelize": "^5.21.13",
+    "socket.io": "^2.3.0",
     "ts-node": "^8.10.2"
+  },
+  "scripts": {
+    "start": "nodemon --watch src --delay 1 --exec ts-node src/chat.ts",
+    "lint": "tslint -p.",
+    "build": "webpack --config webpack.config.js"
   }
 }
