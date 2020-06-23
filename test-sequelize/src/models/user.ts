@@ -43,16 +43,13 @@ User.init(
             type: Sequelize.STRING,
         },
         introduce: {
-            type: Sequelize.STRING,
-            allowNull: true
+            type: Sequelize.STRING
         },
         connection: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false
+            type: Sequelize.TINYINT
         },
         last_online: {
-            type: Sequelize.STRING,
-            allowNull: false
+            type: Sequelize.STRING
         },
         token: {
             type: Sequelize.STRING
