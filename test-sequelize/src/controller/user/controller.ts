@@ -1,16 +1,15 @@
 import { Request, Response } from "express";
-import { tokenUpdate } from './query';
 
 const User = require("./query");
 const mktoken = require("./mkToken").mktoken;
 
 const signUpUser = async (req: Request, res: Response) => {
-    const { userId, password, name } = req.body;
+    const { userId, password, name, introduce } = req.body;
     
     if (await User.findUserById(userId)) 
         throw new Error('이미 있는 아이디');
 
-    await User.userCreate(userId, password, name);
+    await User.userCreate(userId, password, name, introduce);
     res.status(200).json({ message: "회원가입 성공"}).end();
 }
 
